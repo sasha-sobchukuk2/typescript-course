@@ -1,20 +1,7 @@
 
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-
-    const  result = n1 + n2
-    if(showResult){
-        console.log( phrase +  result )
-    }else {
-        return n1 + n2
-    }
-
+const person = {
+    name:'string',
+    age:11
 }
 
-const num1 = 5
-const num2 = 1.1
-const printResult = true
-const myPhrase = 'result is: '
-
-add(num1, num2, printResult, myPhrase)
-
-
+console.log(person.age)
