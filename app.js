@@ -1,14 +1,13 @@
-function add(n1, n2, showResult, phrase) {
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
-    }
-    else {
-        return n1 + n2;
-    }
+var person = {
+    name: 'string',
+    age: 11,
+    hobbies: ['sports', 'cocies']
+};
+var favoriteActivities;
+favoriteActivities = ['sports'];
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toUpperCase());
+    // console.log(hobby.map)  !! dont work
 }
-var num1 = 5;
-var num2 = 1.1;
-var printResult = true;
-var myPhrase = 'result is: ';
-add(num1, num2, printResult, myPhrase);
+console.log(person.age);

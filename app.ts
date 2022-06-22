@@ -1,8 +1,14 @@
 
-const person = {
+const person :{
+    name:string
+    age:number
+    hobbies: string[]
+    role:[number,string]
+}= {
     name:'string',
     age:11,
-    hobbies:['sports','cocies']
+    hobbies:['sports','cocies'],
+    role:[1,'bro']
 }
 let favoriteActivities:string[]
 favoriteActivities = ['sports']
