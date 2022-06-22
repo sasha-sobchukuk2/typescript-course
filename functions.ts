@@ -7,5 +7,12 @@ function printResult (num:number):void{
 }
 printResult(add(1,2))
 
+let combineValues :(a:number,b:number)=>number
+
+combineValues = add
+
+let bro = combineValues(11,22)
+console.log('bro:',bro)
+
 
 
