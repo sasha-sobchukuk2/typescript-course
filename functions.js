@@ -1,3 +1,5 @@
+"use strict";
+// @ts-ignore
 function add(n1, n2) {
     return n1 + n2;
 }
@@ -6,9 +8,7 @@ function printResult(num) {
 }
 function addAndHanle(n1, n2, cb) {
     var result = n1 + n2;
-    var a = cb(result);
-    debugger;
-    console.log(a);
+    cb(result);
     return result;
 }
 // printResult(add(1,2))
@@ -18,5 +18,4 @@ var bro = combineValues(11, 22);
 // console.log('bro:',bro)
 addAndHanle(1, 2, function (res) {
     console.log(res);
-    return res;
 });

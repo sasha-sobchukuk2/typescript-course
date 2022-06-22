@@ -1,3 +1,4 @@
+"use strict";
 function combine(input1, input2, resultConvertion) {
     var result;
     if (typeof input1 === 'number' && typeof input2 === 'number' || resultConvertion === 'as-number') {
@@ -8,5 +9,5 @@ function combine(input1, input2, resultConvertion) {
     }
     return result;
 }
-console.log(combine('1', 2, 'as-number'));
+console.log(combine(1, 2, 'as-number'));
 console.log(combine('bro', '2', 'as-string'));
