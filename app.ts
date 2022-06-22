@@ -10,3 +10,9 @@ if(typeof userInput ==='string'){
 }
 
 
+function generateError (message:string,code:number):never{
+    throw {message,errorCode:code}
+}
+
+const myErr = generateError('bro',2)
+console.log(myErr)
