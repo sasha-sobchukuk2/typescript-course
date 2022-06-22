@@ -1,7 +1,7 @@
-
+type numberOrString = string |number
 function combine (
-    input1 :number |string,
-    input2:number |string,
+    input1 :numberOrString,
+    input2:numberOrString,
     resultConvertion : 'as-number' | "as-string"){
     let result;
     if(typeof input1 === 'number' && typeof input2 === 'number'||resultConvertion ==='as-number'){
