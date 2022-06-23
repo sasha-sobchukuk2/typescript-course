@@ -1,9 +1,12 @@
 "use strict";
 class Department {
-    constructor(n) {
-        this.name = "DEFAULT";
-        this.employes = [];
-        this.name = n;
+    // private  name:string ="DEFAULT"
+    // private employes:string[] =[]
+    constructor(id, name, employes = []) {
+        this.id = id;
+        this.name = name;
+        this.employes = employes;
+        // this.name = n
     }
     describe() {
         console.log(this.name);
@@ -13,10 +16,10 @@ class Department {
     }
     printEmploys() {
         console.log(this.employes.length);
-        console.log(this.employes);
+        console.log(`${this.id} ${this.employes}`);
     }
 }
-const acaunting = new Department('acaun1213123213213ting');
+const acaunting = new Department(1, 'acaun1213123213213ting');
 acaunting.addEmploys('bro');
 acaunting.addEmploys('bro2');
 // acaunting.employes.push('bro3')//cant
