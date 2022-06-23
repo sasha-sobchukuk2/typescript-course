@@ -22,3 +22,4 @@ for (const hobby of person.hobbies) {
 if (person.role === Role.ADMIN) {
     console.log(' role');
 }
+//# sourceMappingURL=20.js.map

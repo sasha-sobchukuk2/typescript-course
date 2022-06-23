@@ -8,3 +8,4 @@ function addF(num1, num2) {
 button.addEventListener('click', function () {
     console.log(addF(+input1.value, + +input2.value));
 });
+//# sourceMappingURL=using-ts.js.map

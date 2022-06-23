@@ -11,3 +11,4 @@ function combine(input1, input2, resultConvertion) {
 }
 console.log(combine(1, 2, 'as-number'));
 console.log(combine('bro', '2', 'as-string'));
+//# sourceMappingURL=combine.js.map

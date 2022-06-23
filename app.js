@@ -11,3 +11,4 @@ function generateError(message, code) {
 }
 const myErr = generateError('bro', 2);
 console.log(myErr);
+//# sourceMappingURL=app.js.map

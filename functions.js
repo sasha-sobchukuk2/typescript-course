@@ -19,3 +19,4 @@ let bro = combineValues(11, 22);
 addAndHanle(1, 2, (res) => {
     console.log(res);
 });
+//# sourceMappingURL=functions.js.map
