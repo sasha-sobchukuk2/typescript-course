@@ -7,16 +7,16 @@ function printResult(num) {
     console.log(num);
 }
 function addAndHanle(n1, n2, cb) {
-    var result = n1 + n2;
+    const result = n1 + n2;
     cb(result);
     return result;
 }
 // printResult(add(1,2))
-var combineValues;
+let combineValues;
 combineValues = add;
-var bro = combineValues(11, 22);
+let bro = combineValues(11, 22);
 // console.log('bro:',bro)
-addAndHanle(1, 2, function (res) {
+addAndHanle(1, 2, (res) => {
     console.log(res);
 });
 //# sourceMappingURL=functions.js.map
