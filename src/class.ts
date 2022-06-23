@@ -19,20 +19,23 @@ class Department {
     }
 
     printEmploys() {
-        console.log(this.employes.length)
-        console.log(`${this.id} ${this.employes}`)
+        console.log(`id:${this.id} employes:  ${this.employes}`)
     }
 }
 
-const acaunting = new Department(1, 'acaun1213123213213ting')
-acaunting.addEmploys('bro')
-acaunting.addEmploys('bro2')
-// acaunting.employes.push('bro3')//cant
-acaunting.printEmploys()
+class ITDepartment extends Department{
+     constructor(id:string ,public  admins:string[]) {
+         super(id,'IT');
+     }
+}
 
-// const acaunting2 = {name:'2123', describe:acaunting.describe}
-// acaunting2.describe()
-// debugger
+
+const acaunting = new ITDepartment('1', ['admin1','admin2'])
+acaunting.addEmploys('1 employ')
+acaunting.addEmploys('2 employ')
+acaunting.printEmploys()
+console.log(acaunting)
+
 
 
 

@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Department = /** @class */ (function () {
     // private  name:string ="DEFAULT"
     // private employes:string[] =[]
@@ -16,17 +29,22 @@ var Department = /** @class */ (function () {
         this.employes.push(emp);
     };
     Department.prototype.printEmploys = function () {
-        console.log(this.employes.length);
-        console.log(this.id + " " + this.employes);
+        console.log("id:" + this.id + " employes:  " + this.employes);
     };
     return Department;
 }());
-var acaunting = new Department(1, 'acaun1213123213213ting');
-acaunting.addEmploys('bro');
-acaunting.addEmploys('bro2');
-// acaunting.employes.push('bro3')//cant
+var ITDepartment = /** @class */ (function (_super) {
+    __extends(ITDepartment, _super);
+    function ITDepartment(id, admins) {
+        var _this = _super.call(this, id, 'IT') || this;
+        _this.admins = admins;
+        return _this;
+    }
+    return ITDepartment;
+}(Department));
+var acaunting = new ITDepartment('1', ['admin1', 'admin2']);
+acaunting.addEmploys('1 employ');
+acaunting.addEmploys('2 employ');
 acaunting.printEmploys();
-// const acaunting2 = {name:'2123', describe:acaunting.describe}
-// acaunting2.describe()
-// debugger
+console.log(acaunting);
 //# sourceMappingURL=class.js.map
