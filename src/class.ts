@@ -1,25 +1,30 @@
-
-
-class  Department {
+class Department {
     // private  name:string ="DEFAULT"
     // private employes:string[] =[]
 
-    constructor(private id:string|number,private name:string,private employes:string[]=[]) {
+    constructor(
+        private readonly id: string | number,
+        private name: string,
+        private employes: string[] = []
+    ) {
         // this.name = n
     }
-    describe (this:Department){
+
+    describe(this: Department) {
         console.log(this.name)
     }
-    addEmploys (emp:string){
+
+    addEmploys(emp: string) {
         this.employes.push(emp)
     }
-    printEmploys(){
+
+    printEmploys() {
         console.log(this.employes.length)
         console.log(`${this.id} ${this.employes}`)
     }
 }
 
-const  acaunting = new Department(1,'acaun1213123213213ting')
+const acaunting = new Department(1, 'acaun1213123213213ting')
 acaunting.addEmploys('bro')
 acaunting.addEmploys('bro2')
 // acaunting.employes.push('bro3')//cant

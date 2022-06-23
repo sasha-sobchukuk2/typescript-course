@@ -6,16 +6,17 @@ var Role;
     Role[Role["AUTHOR"] = 2] = "AUTHOR";
 })(Role || (Role = {}));
 ;
-const person = {
+var person = {
     name: 'string',
     age: 11,
     hobbies: ['sports', 'cocies'],
     roleTurple: [1, 'bro'],
     role: Role.ADMIN
 };
-let favoriteActivities;
+var favoriteActivities;
 favoriteActivities = ['sports'];
-for (const hobby of person.hobbies) {
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
     console.log(hobby.toUpperCase());
     // console.log(hobby.map)  !! dont work
 }

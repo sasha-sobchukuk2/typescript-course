@@ -1,25 +1,27 @@
 "use strict";
-class Department {
+var Department = /** @class */ (function () {
     // private  name:string ="DEFAULT"
     // private employes:string[] =[]
-    constructor(id, name, employes = []) {
+    function Department(id, name, employes) {
+        if (employes === void 0) { employes = []; }
         this.id = id;
         this.name = name;
         this.employes = employes;
         // this.name = n
     }
-    describe() {
+    Department.prototype.describe = function () {
         console.log(this.name);
-    }
-    addEmploys(emp) {
+    };
+    Department.prototype.addEmploys = function (emp) {
         this.employes.push(emp);
-    }
-    printEmploys() {
+    };
+    Department.prototype.printEmploys = function () {
         console.log(this.employes.length);
-        console.log(`${this.id} ${this.employes}`);
-    }
-}
-const acaunting = new Department(1, 'acaun1213123213213ting');
+        console.log(this.id + " " + this.employes);
+    };
+    return Department;
+}());
+var acaunting = new Department(1, 'acaun1213123213213ting');
 acaunting.addEmploys('bro');
 acaunting.addEmploys('bro2');
 // acaunting.employes.push('bro3')//cant

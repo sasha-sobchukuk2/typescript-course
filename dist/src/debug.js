@@ -1,6 +1,6 @@
 "use strict";
-const buttone = document.querySelector('button');
-buttone.addEventListener('click', (e) => {
+var buttone = document.querySelector('button');
+buttone.addEventListener('click', function (e) {
     debugger;
     console.log(e);
 });
