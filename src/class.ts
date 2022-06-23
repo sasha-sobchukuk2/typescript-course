@@ -5,7 +5,7 @@ class Department {
     constructor(
         private readonly id: string | number,
         private name: string,
-        private employes: string[] = []
+        protected employes: string[] = []
     ) {
         // this.name = n
     }
@@ -15,6 +15,7 @@ class Department {
     }
 
     addEmploys(emp: string) {
+
         this.employes.push(emp)
     }
 
@@ -26,6 +27,12 @@ class Department {
 class ITDepartment extends Department{
      constructor(id:string ,public  admins:string[]) {
          super(id,'IT');
+     }
+     addITEmploy(name:string){
+         if (name === 'max'){
+             console.log('dont exceptable')
+         }
+         this.employes.push(name)
      }
 }
 

@@ -40,6 +40,12 @@ var ITDepartment = /** @class */ (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.addITEmploy = function (name) {
+        if (name === 'max') {
+            console.log('dont exceptable');
+        }
+        this.employes.push(name);
+    };
     return ITDepartment;
 }(Department));
 var acaunting = new ITDepartment('1', ['admin1', 'admin2']);
