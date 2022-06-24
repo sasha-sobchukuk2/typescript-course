@@ -1,6 +1,4 @@
 class Department {
-
-
     constructor(
         private readonly id: string | number,
         private name: string,
@@ -8,6 +6,10 @@ class Department {
 
     ) {}
 
+
+    static createEmployee (name:string){
+        return{name}
+    }
     describe(this: Department) {
         console.log(this.name)
     }
@@ -61,7 +63,10 @@ class ReportsDepartment extends Department{
     }
 }
 
-const reportsDep = new ReportsDepartment(1,'sasha',['report1'])
+
+// const worker1  = new Department('1')
+
+// const reportsDep = new ReportsDepartment(1,'sasha',['report1'])
 // reportsDep.firstReport = '123'
 // console.log(reportsDep.firstReport )
 // const acaunting = new ITDepartment('1', ['admin1','admin2'],)

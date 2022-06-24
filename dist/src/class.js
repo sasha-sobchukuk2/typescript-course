@@ -5,6 +5,9 @@ class Department {
         this.name = name;
         this.employes = employes;
     }
+    static createEmployee(name) {
+        return { name };
+    }
     describe() {
         console.log(this.name);
     }
@@ -51,7 +54,8 @@ class ReportsDepartment extends Department {
         this.reports.push(report);
     }
 }
-const reportsDep = new ReportsDepartment(1, 'sasha', ['report1']);
+const worker1 = new Department('1');
+// const reportsDep = new ReportsDepartment(1,'sasha',['report1'])
 // reportsDep.firstReport = '123'
 // console.log(reportsDep.firstReport )
 // const acaunting = new ITDepartment('1', ['admin1','admin2'],)
