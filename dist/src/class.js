@@ -4,15 +4,11 @@ class Department {
         this.id = id;
         this.name = name;
         this.employes = employes;
-        console.log(this.fiscalYear);
     }
     static createWorker(name) {
         /** statick method colud work without of instans , just from Department.createWorker*/
         console.log(this.fiscalYear);
         return { name: name };
-    }
-    describe() {
-        console.log(this.name);
     }
     addEmploys(emp) {
         this.employes.push(emp);
@@ -22,15 +18,23 @@ class Department {
     }
 }
 /**
+ abstract означає шо з нього н еможна зробити інстанс,
+ і описуєм методи методи і поля які будуть обоязкові в  дочірніх класах
+ */
+/**
  * static означає поза екземпляром
  * static означає шо доступ до властивості нема з цього класу, крім статичних методів
 
  */
 Department.fiscalYear = 2020;
 class ITDepartment extends Department {
-    constructor(id, admins) {
+    constructor(id, admins, depName) {
         super(id, 'IT');
         this.admins = admins;
+        this.depName = depName;
+    }
+    describe() {
+        console.log('it-department' + this.id);
     }
     addITEmploy(name) {
         if (name === 'max') {
@@ -40,10 +44,11 @@ class ITDepartment extends Department {
     }
 }
 class ReportsDepartment extends Department {
-    constructor(id, name, reports) {
+    constructor(id, name, reports, depName) {
         super(id, name, reports);
         this.lastReport = reports[-1];
         this.reports = reports;
+        this.depName = depName;
     }
     get firstReport() {
         if (this.lastReport) {
@@ -56,6 +61,9 @@ class ReportsDepartment extends Department {
     set firstReport(data) {
         this.addReport(data);
     }
+    describe() {
+        console.log('ReportsDepartment');
+    }
     addReportsToFirst(report) {
         this.reports = [report, ...this.reports];
     }
@@ -63,9 +71,13 @@ class ReportsDepartment extends Department {
         this.reports.push(report);
     }
 }
-const worker1 = Department.createWorker('1');
-console.log(worker1);
-console.log(Department.fiscalYear);
+// const dep = new Department('0','dep')
+const itDep = new ITDepartment('1', ['it-admin'], 'it-dep');
+// dep.describe()
+itDep.describe();
+// const worker1 = Department.createWorker('1')
+// console.log(worker1)
+// console.log(Department.fiscalYear)
 // const worker1  = new Department('1')
 // const reportsDep = new ReportsDepartment(1,'sasha',['report1'])
 // reportsDep.firstReport = '123'

@@ -1,19 +1,24 @@
-class Department {
+abstract class Department {
+    /**
+     abstract означає шо з нього н еможна зробити інстанс,
+     і описуєм методи методи і поля які будуть обоязкові в  дочірніх класах
+     */
+
     /**
      * static означає поза екземпляром
      * static означає шо доступ до властивості нема з цього класу, крім статичних методів
 
      */
     static fiscalYear = 2020;
+    abstract depName:string
 
     constructor(
-        private readonly id: string | number,
+        protected readonly id: string | number,
         private name: string,
         protected employes: string[] = []
 
     ) {
-        console.log(this.fiscalYear)
-    }
+      }
 
 
     static createWorker (name:string){
@@ -21,9 +26,8 @@ class Department {
         console.log(this.fiscalYear)
         return{name:name}
     }
-    describe(this: Department) {
-        console.log(this.name)
-    }
+
+    abstract  describe(this: Department):void;
     addEmploys(emp: string) {
 
         this.employes.push(emp)
@@ -35,11 +39,16 @@ class Department {
 }
 
 class ITDepartment extends Department{
-
-     constructor(id:string ,public  admins:string[]) {
+    readonly depName:string
+     constructor(id:string ,public  admins:string[],depName:string) {
          super(id,'IT');
+         this.depName = depName
      }
-     addITEmploy(name:string){
+     describe() {
+         console.log('it-department'+ this.id )
+     }
+
+    addITEmploy(name:string){
          if (name === 'max'){
              console.log('dont exceptable')
          }
@@ -47,6 +56,8 @@ class ITDepartment extends Department{
      }
 }
 class ReportsDepartment extends Department{
+    readonly depName:string
+
     private lastReport:string
     private reports: string[]
 
@@ -60,11 +71,16 @@ class ReportsDepartment extends Department{
     set firstReport (data:string){
         this.addReport(data)
     }
-    constructor(id:number,name:string,reports:string[]) {
+    constructor(id:number,name:string,reports:string[],depName:string) {
         super(id,name,reports);
         this.lastReport =  reports[-1]
         this.reports =  reports
+        this.depName=depName
     }
+    describe() {
+        console.log('ReportsDepartment')
+    }
+
     addReportsToFirst (report:string){
         this.reports=[report,...this.reports]
     }
@@ -73,9 +89,15 @@ class ReportsDepartment extends Department{
     }
 }
 
-const worker1 = Department.createWorker('1')
-console.log(worker1)
-console.log(Department.fiscalYear)
+// const dep = new Department('0','dep')
+const itDep = new ITDepartment('1',['it-admin'],'it-dep')
+// dep.describe()
+itDep.describe()
+
+
+// const worker1 = Department.createWorker('1')
+// console.log(worker1)
+// console.log(Department.fiscalYear)
 
 // const worker1  = new Department('1')
 
