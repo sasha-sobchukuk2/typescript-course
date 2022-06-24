@@ -1,19 +1,29 @@
 class Department {
+    /**
+     * static означає поза екземпляром
+     * static означає шо доступ до властивості нема з цього класу, крім статичних методів
+
+     */
+    static fiscalYear = 2020;
+
     constructor(
         private readonly id: string | number,
         private name: string,
         protected employes: string[] = []
 
-    ) {}
+    ) {
+        console.log(this.fiscalYear)
+    }
 
 
-    static createEmployee (name:string){
-        return{name}
+    static createWorker (name:string){
+        /** statick method colud work without of instans , just from Department.createWorker*/
+        console.log(this.fiscalYear)
+        return{name:name}
     }
     describe(this: Department) {
         console.log(this.name)
     }
-
     addEmploys(emp: string) {
 
         this.employes.push(emp)
@@ -63,6 +73,9 @@ class ReportsDepartment extends Department{
     }
 }
 
+const worker1 = Department.createWorker('1')
+console.log(worker1)
+console.log(Department.fiscalYear)
 
 // const worker1  = new Department('1')
 

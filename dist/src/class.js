@@ -4,9 +4,12 @@ class Department {
         this.id = id;
         this.name = name;
         this.employes = employes;
+        console.log(this.fiscalYear);
     }
-    static createEmployee(name) {
-        return { name };
+    static createWorker(name) {
+        /** statick method colud work without of instans , just from Department.createWorker*/
+        console.log(this.fiscalYear);
+        return { name: name };
     }
     describe() {
         console.log(this.name);
@@ -18,6 +21,12 @@ class Department {
         console.log(`id:${this.id} employes:  ${this.employes}`);
     }
 }
+/**
+ * static означає поза екземпляром
+ * static означає шо доступ до властивості нема з цього класу, крім статичних методів
+
+ */
+Department.fiscalYear = 2020;
 class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'IT');
@@ -54,7 +63,10 @@ class ReportsDepartment extends Department {
         this.reports.push(report);
     }
 }
-const worker1 = new Department('1');
+const worker1 = Department.createWorker('1');
+console.log(worker1);
+console.log(Department.fiscalYear);
+// const worker1  = new Department('1')
 // const reportsDep = new ReportsDepartment(1,'sasha',['report1'])
 // reportsDep.firstReport = '123'
 // console.log(reportsDep.firstReport )
