@@ -33,6 +33,15 @@ class ITDepartment extends Department {
         this.admins = admins;
         this.depName = depName;
     }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        else {
+            this.instance = new ITDepartment('1', ['sasa admin'], 'it-dep');
+            return this.instance;
+        }
+    }
     describe() {
         console.log('it-department' + this.id);
     }
@@ -71,10 +80,14 @@ class ReportsDepartment extends Department {
         this.reports.push(report);
     }
 }
+// const itDep = ITDepartment.getInstance()
+// const itDe2 = ITDepartment.getInstance()
+// console.log(itDep ===itDe2)
+// debugger
 // const dep = new Department('0','dep')
-const itDep = new ITDepartment('1', ['it-admin'], 'it-dep');
+// const itDep = new ITDepartment('1',['it-admin'],'it-dep')
 // dep.describe()
-itDep.describe();
+// itDep.describe()
 // const worker1 = Department.createWorker('1')
 // console.log(worker1)
 // console.log(Department.fiscalYear)
