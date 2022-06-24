@@ -1,12 +1,12 @@
 interface Greetable {
-    name: string
+    readonly name: string;
 
     greet(phrase: string): void
 }
 /** імплемент =  обовязково включити поля інтерфейсу що імплементуємо,
  *  можимо імплементувати одночасно з багатьох*/
 class Person implements Greetable {
-    name: string
+    name: string;
     age = 10
     constructor(n: string) {
         this.name = n
@@ -17,7 +17,7 @@ class Person implements Greetable {
     }
 }
 
-let user1: Person
+let user1: Greetable
 user1 = new Person('sasha')
 /*user1 = {
     name: 'sasha',
@@ -27,6 +27,7 @@ user1 = new Person('sasha')
     }
 }*/
 user1.greet('hi')
+user1.name = '3'
 
 
 

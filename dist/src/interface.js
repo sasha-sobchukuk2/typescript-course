@@ -20,4 +20,5 @@ user1 = new Person('sasha');
     }
 }*/
 user1.greet('hi');
+user1.name = '3';
 //# sourceMappingURL=interface.js.map
