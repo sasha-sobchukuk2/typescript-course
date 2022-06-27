@@ -34,6 +34,15 @@ user1 = new Person('sasha')
 user1.greet('hi')
 // user1.name = '3'
 
+interface AddFn {
+    /** function type інтерфейс в якому просто опис однієї функції*/
+    (a:number,b:number):number
+}
+let  adde:AddFn;
+
+adde = (a1:number,b1:number)=>{
+    return a1+b1;
+}
 
 
 

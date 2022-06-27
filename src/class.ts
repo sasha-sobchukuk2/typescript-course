@@ -68,6 +68,7 @@ class ITDepartment extends Department {
 }
 
 class ReportsDepartment extends Department {
+    /* exstends ише раз  а implements з  багатьох одночасно*/
     readonly depName: string
 
     private lastReport: string
