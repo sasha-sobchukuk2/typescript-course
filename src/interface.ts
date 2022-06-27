@@ -1,4 +1,9 @@
-interface Greetable {
+
+interface Named {
+    name:string
+}
+
+interface Greetable extends Named{
     readonly name: string;
 
     greet(phrase: string): void
@@ -27,7 +32,7 @@ user1 = new Person('sasha')
     }
 }*/
 user1.greet('hi')
-user1.name = '3'
+// user1.name = '3'
 
 
 
