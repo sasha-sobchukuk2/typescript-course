@@ -1,29 +1,37 @@
 
 interface Named {
-    name:string
+    name?:string
+    outputName?:string
 }
 
 interface Greetable extends Named{
-    readonly name: string;
+    readonly name?: string;
 
     greet(phrase: string): void
 }
 /** імплемент =  обовязково включити поля інтерфейсу що імплементуємо,
  *  можимо імплементувати одночасно з багатьох*/
 class Person implements Greetable {
-    name: string;
+    name?: string;
     age = 10
-    constructor(n: string) {
-        this.name = n
+    constructor(n?: string) {
+        if(n){
+            this.name = n
+        }
     }
 
     greet(phrase: string) {
-        console.log(phrase + this.name)
+        if(this.name){
+            console.log(phrase + this.name)
+
+        }else {
+            console.log('hi! name not exist')
+        }
     }
 }
 
 let user1: Greetable
-user1 = new Person('sasha')
+user1 = new Person()
 /*user1 = {
     name: 'sasha',
     age: 26,

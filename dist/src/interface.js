@@ -4,14 +4,21 @@
 class Person {
     constructor(n) {
         this.age = 10;
-        this.name = n;
+        if (n) {
+            this.name = n;
+        }
     }
     greet(phrase) {
-        console.log(phrase + this.name);
+        if (this.name) {
+            console.log(phrase + this.name);
+        }
+        else {
+            console.log('hi! name not exist');
+        }
     }
 }
 let user1;
-user1 = new Person('sasha');
+user1 = new Person();
 /*user1 = {
     name: 'sasha',
     age: 26,
@@ -20,5 +27,8 @@ user1 = new Person('sasha');
     }
 }*/
 user1.greet('hi');
-user1.name = '3';
+let adde;
+adde = (a1, b1) => {
+    return a1 + b1;
+};
 //# sourceMappingURL=interface.js.map
