@@ -1,5 +1,4 @@
 "use strict";
-var _a;
 const e1 = {
     name: 'max',
     privileges: ['admin'],
@@ -85,5 +84,8 @@ const fetcedUserData = {
     name: 'max',
     job: { title: 'ceo', description: 'my own company' }
 };
-console.log((_a = fetcedUserData === null || fetcedUserData === void 0 ? void 0 : fetcedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+// console.log(fetcedUserData?.job?.title)
+const userInput2 = '';
+const storedData = userInput2 !== null && userInput2 !== void 0 ? userInput2 : 'default'; //?? null or undefined only
+console.log(storedData);
 //# sourceMappingURL=intersection.js.map

@@ -146,6 +146,16 @@ const fetcedUserData = {
     job:{title:'ceo',description:'my own company'}
 }
 
-console.log(fetcedUserData?.job?.title)
+// console.log(fetcedUserData?.job?.title)
+
+
+const userInput2 = '';
+
+const storedData = userInput2 ??  'default' //?? null or undefined only
+
+console.log(storedData)
+
+
+
 
 
