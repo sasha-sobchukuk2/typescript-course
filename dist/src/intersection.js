@@ -4,7 +4,6 @@ const e1 = {
     privileges: ['admin'],
     startDate: new Date()
 };
-// let a:Both = 2
 function add(a, b) {
     /** type quard typeof*/
     if (typeof a === 'string' || typeof b === 'string') {
@@ -14,6 +13,8 @@ function add(a, b) {
         return a + b;
     }
 }
+const result = add('max', ' pain');
+result.split(' ');
 function printEmployeeInformation(emp) {
     /** in quard   якшо в типі emp  є поле privileges*/
     console.log('name: ' + emp.name);
