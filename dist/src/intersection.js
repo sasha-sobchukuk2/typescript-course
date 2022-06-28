@@ -48,4 +48,24 @@ function useVehicle(vehicle) {
         vehicle.loadCargo(12);
     }
 }
+function moveAnimal(animal) {
+    /**
+     descrimination union це коли добавляєм конкретний тип к кожен interface щоб потім можна було промавити
+     і де є конкретні поля а де нема, бо якшо обєднати то може буьти а може і не бути, і типскріпт ніфіга не помічний
+
+     */
+    let speed;
+    switch (animal.type) {
+        case "horse":
+            speed = animal.runningSpeed;
+            break;
+        case "bird":
+            speed = animal.flyingSpeed;
+            break;
+        default:
+            return 0;
+    }
+    console.log('speed' + speed);
+}
+moveAnimal({ type: 'horse', runningSpeed: 2 });
 //# sourceMappingURL=intersection.js.map
