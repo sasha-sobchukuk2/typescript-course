@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 const e1 = {
     name: 'max',
     privileges: ['admin'],
@@ -79,4 +80,10 @@ const errorBag = {
     // email:2 так не можена бо кожне поле  має  бути стрінг
     1: '3'
 };
+const fetcedUserData = {
+    id: 'u1',
+    name: 'max',
+    job: { title: 'ceo', description: 'my own company' }
+};
+console.log((_a = fetcedUserData === null || fetcedUserData === void 0 ? void 0 : fetcedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
 //# sourceMappingURL=intersection.js.map

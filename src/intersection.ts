@@ -140,5 +140,12 @@ const errorBag: ErrorContainer = {
 
 
 
+const fetcedUserData = {
+    id:'u1',
+    name: 'max',
+    job:{title:'ceo',description:'my own company'}
+}
+
+console.log(fetcedUserData?.job?.title)
 
 
