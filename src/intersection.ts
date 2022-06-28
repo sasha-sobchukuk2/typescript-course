@@ -122,3 +122,16 @@ const userInputElement = document.querySelector ("#user-input")! as HTMLInputEle
 (userInputElement as HTMLInputElement).value = 'hi there' // а можна й так
 
 
+
+interface ErrorContainer {
+    //id:number; не може бути бо знизу описали шо кожжне поле має бути строкою
+    [prop:string]:string;
+}
+const errorBag: ErrorContainer = {
+    // email:2 так не можена бо кожне поле  має  бути стрінг
+    1:'3'
+}
+
+
+
+

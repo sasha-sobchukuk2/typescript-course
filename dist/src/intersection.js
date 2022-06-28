@@ -74,4 +74,8 @@ const userInputElement = document.querySelector("#user-input"); //  в реак�
 // бо ми вже й так вписуєм що це не  null
 // userInputElement.value = 'hi there'
 userInputElement.value = 'hi there'; // а можна й так
+const errorBag = {
+    // email:2 так не можена бо кожне поле  має  бути стрінг
+    1: '3'
+};
 //# sourceMappingURL=intersection.js.map
