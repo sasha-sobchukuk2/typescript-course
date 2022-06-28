@@ -68,4 +68,10 @@ function moveAnimal(animal) {
     console.log('speed' + speed);
 }
 moveAnimal({ type: 'horse', runningSpeed: 2 });
+// const userInputElement = <HTMLInputElement >document.querySelector ("#user-input")! //в дужках позначаємо що буде після дужок
+const userInputElement = document.querySelector("#user-input"); //  в реакті попереднє працює по іншому тому тре писати as
+// і доре речі тут не обовязковий !
+// бо ми вже й так вписуєм що це не  null
+// userInputElement.value = 'hi there'
+userInputElement.value = 'hi there'; // а можна й так
 //# sourceMappingURL=intersection.js.map
