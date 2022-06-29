@@ -32,5 +32,38 @@ console.log(countAndDescribe('bor'));
 function extractAndConvert(obj, key) {
     return obj[key];
 }
-console.log(extractAndConvert({ name: 'sasha' }, 'name'));
+// console.log(extractAndConvert({name:'sasha'},'name'))
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        // погано працюватиме бо це примітив сам сплайс, якшо по фільтру то норм, тому можна робити перевірку шо T примітив
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem('1');
+textStorage.addItem('2');
+textStorage.removeItem('1');
+textStorage.removeItem('1');
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+numberStorage.addItem(1);
+console.log(numberStorage.getItems());
+const alina = { name: 'alina' };
+const objStorage = new DataStorage();
+objStorage.addItem({ name: 'sasha' });
+objStorage.addItem(alina);
+objStorage.removeItem(alina);
+console.log(objStorage.getItems());
 //# sourceMappingURL=generics.js.map
