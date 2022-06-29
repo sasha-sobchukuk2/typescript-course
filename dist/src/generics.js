@@ -28,4 +28,9 @@ function countAndDescribe(element) {
     return [element, descriptionType];
 }
 console.log(countAndDescribe('bor'));
+/** а тут ми пишем шо 1 параметр буде обєктом а другий буде назвою поля цього обєкту*/
+function extractAndConvert(obj, key) {
+    return obj[key];
+}
+console.log(extractAndConvert({ name: 'sasha' }, 'name'));
 //# sourceMappingURL=generics.js.map

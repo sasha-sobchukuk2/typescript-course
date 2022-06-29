@@ -34,7 +34,12 @@ function countAndDescribe<T extends Lengthy>(element:T):[T,string  ]{
 
 console.log(countAndDescribe('bor'));
 
+/** а тут ми пишем шо 1 параметр буде обєктом а другий буде назвою поля цього обєкту*/
+function extractAndConvert<T extends object,U extends keyof T>(obj:T,key:U){
+ return obj[key]
+}
 
+console.log(extractAndConvert({name:'sasha'},'name'))
 
 
 
