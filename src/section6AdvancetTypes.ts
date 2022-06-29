@@ -22,9 +22,9 @@ type Both = StrNum & NumBool
 
 // let a:Both = 2
 
-function add(a:number,b:number):number //якщо знизу є функція з таки імям і вхідними значеннями є  числа то вихідні значання також будуть числа
-function add(a:string,b:string):string //якщо знизу є функція з таки імям і вхідними значеннями є  числа то вихідні значання також будуть числа
-function add(a: StrNum, b: StrNum) {
+function add3(a:number, b:number):number //якщо знизу є функція з таки імям і вхідними значеннями є  числа то вихідні значання також будуть числа
+function add3(a:string, b:string):string //якщо знизу є функція з таки імям і вхідними значеннями є  числа то вихідні значання також будуть числа
+function add3(a: StrNum, b: StrNum) {
     /** type quard typeof*/
     if (typeof a === 'string' || typeof b === 'string') {
         return a.toString() + b.toString()
@@ -32,7 +32,7 @@ function add(a: StrNum, b: StrNum) {
         return a + b
     }
 }
-const result = add('max',' pain')as string
+const result = add3('max',' pain')as string
 
 result.split(' ')
 
