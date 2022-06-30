@@ -1,10 +1,13 @@
 
-function Logger (constructon:Function){
-    console.log('loggin...')
-    console.log(constructon)
+function Logger (logString:string){
+    return function (constructon:Function){
+        console.log(logString )
+        console.log(constructon)
+    }
+
 }
 
-@Logger
+@Logger('bro123')
 class Person1 {
     name='name'
     constructor() {
