@@ -11,14 +11,25 @@ function Logger(logString) {
         console.log(constructon);
     };
 }
+function WithTemplate(template, hookId) {
+    return function (constructor) {
+        const p = new constructor();
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+            hookEl.innerHTML = template;
+            hookEl.querySelector('h1').textContent = p.name;
+        }
+    };
+}
+// @Logger('bro123')
 let Person1 = class Person1 {
     constructor() {
-        this.name = 'name';
+        this.name = 'name123213213';
         console.log('creating person object..');
     }
 };
 Person1 = __decorate([
-    Logger('bro123')
+    WithTemplate('<h1>hello</h1>', 'decorators')
 ], Person1);
 const pers = new Person1();
 console.log(pers);
