@@ -7,12 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 function Logger(logString) {
     return function (constructon) {
+        console.log('LOGGER FACTORY');
         console.log(logString);
         console.log(constructon);
     };
 }
 function WithTemplate(template, hookId) {
     return function (constructor) {
+        console.log('TEMPLATE FACTORY');
         const p = new constructor();
         const hookEl = document.getElementById(hookId);
         if (hookEl) {
@@ -21,7 +23,6 @@ function WithTemplate(template, hookId) {
         }
     };
 }
-// @Logger('bro123')
 let Person1 = class Person1 {
     constructor() {
         this.name = 'name123213213';
@@ -29,6 +30,7 @@ let Person1 = class Person1 {
     }
 };
 Person1 = __decorate([
+    Logger('bro123'),
     WithTemplate('<h1>hello</h1>', 'decorators')
 ], Person1);
 const pers = new Person1();
