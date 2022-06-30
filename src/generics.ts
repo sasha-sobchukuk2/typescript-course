@@ -1,4 +1,4 @@
-/** генерики типи що вимагають уточнень або самі є уточненнями (генерики це умовні типи) */
+/** генерики типи що вимагають уточнень або самі є уточненнями (генерики це умовні типи) , роблять типи гнучкими*/
 //
 //
 // const names:Array<string> = []; // string[]
@@ -60,26 +60,44 @@ class DataStorage<T> {
 
 }
 
-const textStorage = new DataStorage<string>()
-textStorage.addItem('1')
-textStorage.addItem('2')
-textStorage.removeItem('1')
-textStorage.removeItem('1')
-console.log(textStorage.getItems())
+// const textStorage = new DataStorage<string>()
+// textStorage.addItem('1')
+// textStorage.addItem('2')
+// textStorage.removeItem('1')
+// textStorage.removeItem('1')
+// console.log(textStorage.getItems())
+//
+// const numberStorage = new DataStorage<number>()
+// numberStorage.addItem(1)
+// console.log(numberStorage.getItems())
+//
+// const alina = {name:'alina'}
+// const objStorage = new DataStorage<object>()
+// objStorage.addItem({name:'sasha'})
+// objStorage.addItem(alina)
+// objStorage.removeItem(alina)
+//
+// console.log(objStorage.getItems())
 
-const numberStorage = new DataStorage<number>()
-numberStorage.addItem(1)
-console.log(numberStorage.getItems())
-
-const alina = {name:'alina'}
-const objStorage = new DataStorage<object>()
-objStorage.addItem({name:'sasha'})
-objStorage.addItem(alina)
-objStorage.removeItem(alina)
-
-console.log(objStorage.getItems())
 
 
 
+interface CourseCoal {
+ title:string
+ description:string
+ myDate :Date
+}
+
+function createCoalCourse (title:string,description:string,myDate:Date):CourseCoal{
+ let goal:Partial<CourseCoal> = {}
+ goal.title = title
+ goal.description = description
+ goal.myDate = myDate
+ return goal as CourseCoal
+}
+
+const names:Readonly<string[]> = ['max','sasha']
+
+// names.push('bro')
 
 

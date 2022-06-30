@@ -1,5 +1,5 @@
 "use strict";
-/** генерики типи що вимагають уточнень або самі є уточненнями (генерики це умовні типи) */
+/** генерики типи що вимагають уточнень або самі є уточненнями (генерики це умовні типи) , роблять типи гнучкими*/
 //
 //
 // const names:Array<string> = []; // string[]
@@ -51,19 +51,13 @@ class DataStorage {
         return [...this.data];
     }
 }
-const textStorage = new DataStorage();
-textStorage.addItem('1');
-textStorage.addItem('2');
-textStorage.removeItem('1');
-textStorage.removeItem('1');
-console.log(textStorage.getItems());
-const numberStorage = new DataStorage();
-numberStorage.addItem(1);
-console.log(numberStorage.getItems());
-const alina = { name: 'alina' };
-const objStorage = new DataStorage();
-objStorage.addItem({ name: 'sasha' });
-objStorage.addItem(alina);
-objStorage.removeItem(alina);
-console.log(objStorage.getItems());
+function createCoalCourse(title, description, myDate) {
+    let goal = {};
+    goal.title = title;
+    goal.description = description;
+    goal.myDate = myDate;
+    return goal;
+}
+const names = ['max', 'sasha'];
+// names.push('bro')
 //# sourceMappingURL=generics.js.map
