@@ -11,22 +11,25 @@ function Logger(logString: string) {
 }
 
 function WithTemplate(template: string, hookId: string) {
-    console.log('це буде друге222')
 
-    return function (constructor: any) {
-        console.log('це буде перше22')
+    return function<T extends {new(...args:any[]):{name:string}}> (originalonstructor: T) {
+        return class extends originalonstructor {
+            constructor(..._:any[]) {
+                super();
 
-        console.log('TEMPLATE FACTORY')
-        const p = new constructor()
-        const hookEl = document.getElementById(hookId)
-        if (hookEl) {
-            hookEl.innerHTML = template
-            hookEl.querySelector('h1')!.textContent = p.name
+                console.log('TEMPLATE FACTORY')
+                // const p = new originalonstructor()
+                const hookEl = document.getElementById(hookId)
+                if (hookEl) {
+                    hookEl.innerHTML = template
+                    hookEl.querySelector('h1')!.textContent = this.name
+                }
+            }
         }
     }
 }
 
-@Logger('bro123')
+// @Logger('bro123')
 @WithTemplate('<h1>hello</h1>', 'decorators')
 class Person1 {
     name = 'name123213213'
@@ -37,12 +40,14 @@ class Person1 {
 
 }
 
-const pers = new Person1()
+// const pers = new Person1()
+//
+// console.log(pers)
 
-console.log(pers)
-
+/*
 
 function LogProp(target: any, propertyName: string | Symbol) {
+
     console.log('property decorator!');
     console.log(target, propertyName);
 }
@@ -63,15 +68,16 @@ function LogProp3(target: any, name: string | Symbol, descriptor: PropertyDescri
     console.log(descriptor)// розпише дескриптор // value writable
 }
 function LogProp4(target: any, name: string | Symbol, position:number) {
-    console.log('Parameter decorator')
+        console.log('Parameter decorator')
 
-    console.log(target)//розпише клас або просто конструктор не помню
-    console.log(name)//розпише імя методу
-    console.log(position)// позиція // index
+        console.log(target)//розпише клас або просто конструктор не помню
+        console.log(name)//розпише імя методу
+        console.log(position)// позиція // index
+
 }
 
 class Product {
-    @LogProp
+    @LogProp()
     title: string;
     private _price: number
     @LogProp2
@@ -98,6 +104,9 @@ class Product {
 
 
 
+//тут декоратори спрацююють раз бо вони тут виконуються лише при зверненні до класу
 
+const p1 = new  Product('book 1',19)
+const p2 = new  Product('book 2',29)
 
-
+*/
