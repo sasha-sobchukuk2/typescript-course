@@ -1,72 +1,95 @@
-
-function Logger (logString:string){
+function Logger(logString: string) {
     console.log('це буде перше11')
 
-    return function (constructon:Function){
+    return function (constructon: Function) {
         console.log('це буде друге11')
 
-        console.log(logString )
+        console.log(logString)
         console.log(constructon)
     }
 
 }
 
-function WithTemplate (template:string,hookId:string){
+function WithTemplate(template: string, hookId: string) {
     console.log('це буде друге222')
 
-    return function (constructor:any){
+    return function (constructor: any) {
         console.log('це буде перше22')
 
         console.log('TEMPLATE FACTORY')
         const p = new constructor()
         const hookEl = document.getElementById(hookId)
-        if(hookEl){
-            hookEl.innerHTML  = template
+        if (hookEl) {
+            hookEl.innerHTML = template
             hookEl.querySelector('h1')!.textContent = p.name
         }
     }
 }
 
 @Logger('bro123')
-@WithTemplate('<h1>hello</h1>','decorators')
+@WithTemplate('<h1>hello</h1>', 'decorators')
 class Person1 {
-    name='name123213213'
+    name = 'name123213213'
+
     constructor() {
         console.log('creating person object..')
     }
 
 }
+
 const pers = new Person1()
 
 console.log(pers)
 
 
-
-
-
-
-function LogProp(target: any,propertyName:string |Symbol ){
+function LogProp(target: any, propertyName: string | Symbol) {
     console.log('property decorator!');
     console.log(target, propertyName);
 }
 
+function LogProp2(target: any, name: string, descriptor: PropertyDescriptor) {
+    console.log('accessor decorator')
 
-class  Product {
+    console.log(target)//розпише клас або просто конструктор не помню
+    console.log(name)//розпише імя акцесора
+    console.log(descriptor)// розпише дескриптор // get set
+}
+
+function LogProp3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
+    console.log('Method decorator')
+
+    console.log(target)//розпише клас або просто конструктор не помню
+    console.log(name)//розпише імя імя методу
+    console.log(descriptor)// розпише дескриптор // value writable
+}
+function LogProp4(target: any, name: string | Symbol, position:number) {
+    console.log('Parameter decorator')
+
+    console.log(target)//розпише клас або просто конструктор не помню
+    console.log(name)//розпише імя методу
+    console.log(position)// позиція // index
+}
+
+class Product {
     @LogProp
-    title :string;
-    private _price:number
-    set price(val:number){
-        if(val>0){
+    title: string;
+    private _price: number
+    @LogProp2
+    set price(val: number) {
+        if (val > 0) {
             this._price = val
-        }else {
+        } else {
             throw new Error('Invalid price - should be positive!')
         }
     }
-    constructor(t:string,p:number) {
+
+    constructor(t: string, p: number) {
         this.title = t;
         this._price = p;
     }
-    getPriceWithTax(tax:number){
+
+    @LogProp3
+    getPriceWithTax(@LogProp4 tax: number) {
         return this._price * (1 + tax)
     }
 }
