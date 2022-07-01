@@ -140,6 +140,59 @@ __decorate([
 ], Printer.prototype, "showMessage", null);
 const p = new Printer();
 // p.showMessage()
-const button2 = document.querySelector('.click-me');
-button2.addEventListener('click', p.showMessage);
+// const button2 = document.querySelector('.click-me')! as HTMLButtonElement
+// button2.addEventListener('click',p.showMessage);
+const courseForm = document.querySelector('form');
+const registeredValidators = {};
+function Required(target, propName) {
+    registeredValidators[target.constructor.name] = Object.assign(Object.assign({}, registeredValidators[target.constructor.name]), { [propName]: ['required'] });
+}
+function IsPositiveNumber(target, propName) {
+    registeredValidators[target.constructor.name] = Object.assign(Object.assign({}, registeredValidators[target.constructor.name]), { [propName]: ['positive'] });
+}
+function validate(obj) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if (!objValidatorConfig) {
+        return true;
+    }
+    let isValid;
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required':
+                    isValid = isValid && !!obj[prop];
+                    break;
+                case 'positive':
+                    isValid = isValid && obj[prop] > 0;
+                    break;
+            }
+        }
+    }
+    return isValid;
+}
+class Course {
+    constructor(t, p) {
+        this.tittle = t;
+        this.price = p;
+    }
+}
+__decorate([
+    Required
+], Course.prototype, "tittle", void 0);
+__decorate([
+    IsPositiveNumber
+], Course.prototype, "price", void 0);
+courseForm.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const $title = document.getElementById('title');
+    const $price = document.getElementById('price');
+    const title = $title.value;
+    const price = +$price.value;
+    const createdCoure = new Course(title, price);
+    if (!validate(createdCoure)) {
+        alert('error');
+        return;
+    }
+    console.log(createdCoure);
+});
 //# sourceMappingURL=decorators.js.map
