@@ -1,48 +1,50 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-function Logger(logString) {
-    console.log('це буде перше11');
-    return function (constructon) {
-        console.log('це буде друге11');
-        console.log(logString);
-        console.log(constructon);
-    };
+/*function Logger(logString: string) {
+    console.log('це буде перше11')
+
+    return function (constructon: Function) {
+        console.log('це буде друге11')
+
+        console.log(logString)
+        console.log(constructon)
+    }
+
 }
-function WithTemplate(template, hookId) {
-    return function (originalonstructor) {
+
+function WithTemplate(template: string, hookId: string) {
+
+    return function<T extends {new(...args:any[]):{name:string}}> (originalonstructor: T) {
         return class extends originalonstructor {
-            constructor(..._) {
+            constructor(..._:any[]) {
                 super();
-                console.log('TEMPLATE FACTORY');
+
+                console.log('TEMPLATE FACTORY')
                 // const p = new originalonstructor()
-                const hookEl = document.getElementById(hookId);
+                const hookEl = document.getElementById(hookId)
                 if (hookEl) {
-                    hookEl.innerHTML = template;
-                    hookEl.querySelector('h1').textContent = this.name;
+                    hookEl.innerHTML = template
+                    hookEl.querySelector('h1')!.textContent = this.name
                 }
             }
-        };
-    };
-}
-// @Logger('bro123')
-let Person1 = class Person1 {
-    constructor() {
-        this.name = 'name123213213';
-        console.log('creating person object..');
+        }
     }
-};
-Person1 = __decorate([
-    WithTemplate('<h1>hello</h1>', 'decorators')
-], Person1);
+}
+
+// @Logger('bro123')
+@WithTemplate('<h1>hello</h1>', 'decorators')
+class Person1 {
+    name = 'name123213213'
+
+    constructor() {
+        console.log('creating person object..')
+    }
+
+}
+
 // const pers = new Person1()
 //
 // console.log(pers)
-/*
+
 
 function LogProp(target: any, propertyName: string | Symbol) {
 
@@ -56,6 +58,7 @@ function LogProp2(target: any, name: string, descriptor: PropertyDescriptor) {
     console.log(target)//розпише клас або просто конструктор не помню
     console.log(name)//розпише імя акцесора
     console.log(descriptor)// розпише дескриптор // get set
+    return {}
 }
 
 function LogProp3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
@@ -75,7 +78,7 @@ function LogProp4(target: any, name: string | Symbol, position:number) {
 }
 
 class Product {
-    @LogProp()
+    @LogProp
     title: string;
     private _price: number
     @LogProp2
@@ -105,7 +108,38 @@ class Product {
 //тут декоратори спрацююють раз бо вони тут виконуються лише при зверненні до класу
 
 const p1 = new  Product('book 1',19)
-const p2 = new  Product('book 2',29)
-
-*/
+const p2 = new  Product('book 2',29)*/
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+function AutoBind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescripror = {
+        configurable: true,
+        enumerable: true,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    };
+    return adjDescripror;
+}
+class Printer {
+    constructor() {
+        this.message = 'This works!';
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+__decorate([
+    AutoBind
+], Printer.prototype, "showMessage", null);
+const p = new Printer();
+// p.showMessage()
+const button2 = document.querySelector('.click-me');
+button2.addEventListener('click', p.showMessage);
 //# sourceMappingURL=decorators.js.map

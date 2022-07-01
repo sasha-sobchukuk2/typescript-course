@@ -1,4 +1,4 @@
-function Logger(logString: string) {
+/*function Logger(logString: string) {
     console.log('це буде перше11')
 
     return function (constructon: Function) {
@@ -44,7 +44,6 @@ class Person1 {
 //
 // console.log(pers)
 
-/*
 
 function LogProp(target: any, propertyName: string | Symbol) {
 
@@ -58,6 +57,7 @@ function LogProp2(target: any, name: string, descriptor: PropertyDescriptor) {
     console.log(target)//розпише клас або просто конструктор не помню
     console.log(name)//розпише імя акцесора
     console.log(descriptor)// розпише дескриптор // get set
+    return {}
 }
 
 function LogProp3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
@@ -77,7 +77,7 @@ function LogProp4(target: any, name: string | Symbol, position:number) {
 }
 
 class Product {
-    @LogProp()
+    @LogProp
     title: string;
     private _price: number
     @LogProp2
@@ -107,6 +107,34 @@ class Product {
 //тут декоратори спрацююють раз бо вони тут виконуються лише при зверненні до класу
 
 const p1 = new  Product('book 1',19)
-const p2 = new  Product('book 2',29)
+const p2 = new  Product('book 2',29)*/
 
-*/
+function AutoBind(_:any, _2 :string, descriptor:PropertyDescriptor ){
+      const originalMethod = descriptor.value;
+      const adjDescripror:PropertyDescriptor ={
+          configurable:true,
+          enumerable:true,
+          get(){
+              const boundFn = originalMethod.bind(this)
+              return boundFn
+          }
+      }
+      return adjDescripror
+}
+
+class Printer {
+    message = 'This works!';
+
+    @AutoBind
+    showMessage(){
+        console.log(this.message)
+    }
+
+}
+const p = new Printer()
+// p.showMessage()
+const button2 = document.querySelector('.click-me')! as HTMLButtonElement
+button2.addEventListener('click',p.showMessage);
+
+
+
