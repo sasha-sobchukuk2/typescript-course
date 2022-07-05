@@ -10,6 +10,34 @@ function autobind(target:any,methodName:string,descriptor:PropertyDescriptor){
     };
     return adjDescriptor
 }
+interface Validatible{
+    value:string|number
+    required?:boolean
+    minLength?:number
+    maxLength?:number
+    min?:number
+    max?:number
+}
+function validatee(validatableInput:Validatible){
+         let isValid = true
+         if(validatableInput.required){
+             isValid = isValid && validatableInput.value.toString().trim().length !== 0;
+         }
+         if(validatableInput.minLength != null && typeof validatableInput.value ==="string"){
+                isValid = isValid && validatableInput.value.length > validatableInput.minLength
+         }
+         if(validatableInput.maxLength != null && typeof validatableInput.value ==="string"){
+                isValid = isValid && validatableInput.value.length < validatableInput.maxLength
+         }
+         if(validatableInput.min !=null && typeof validatableInput.value === 'number'){
+             isValid = isValid  && validatableInput.value > validatableInput.min
+         }
+         if(validatableInput.max != null && typeof validatableInput.value === 'number'){
+             isValid = isValid  && validatableInput.value < validatableInput.max
+         }
+
+         return isValid
+}
 
 class AppProject{
     templateElement:HTMLTemplateElement
@@ -37,10 +65,29 @@ class AppProject{
         const enteredTittle = this.titleInputElement.value;
         const enteredDescription = this.descriptionInputElement.value;
         const enteredPeople = this.peopleElement.value;
+        const tittleValidatable:Validatible = {
+            value:enteredTittle,
+            required:true,
+        }
+        const descriptionValidatable:Validatible = {
+            value:enteredDescription,
+            required:true,
+            minLength:5
+        }
+        const peopleValidatable:Validatible = {
+            value:+enteredPeople,
+            required:true,
+            min:2,
+            max:5
+        }
+
         if(
-            enteredTittle.trim().length === 0
-            || enteredDescription.trim().length ===0
-            || enteredDescription.trim().length === 0
+            // enteredTittle.trim().length === 0
+            // || enteredDescription.trim().length ===0
+            // || enteredDescription.trim().length === 0
+        !validatee(tittleValidatable)||
+        !validatee(descriptionValidatable)||
+        !validatee(peopleValidatable)
         ){
              alert('invalid input ')
             return;
