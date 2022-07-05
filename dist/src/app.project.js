@@ -23,15 +23,38 @@ class AppProject {
         const importedNode = document.importNode(this.templateElement.content, true);
         this.element = importedNode.firstElementChild;
         this.titleInputElement = this.element.querySelector('#title');
-        this.descriptionInputElement = this.element.querySelector('#title');
-        this.peopleElement = this.element.querySelector('#title');
+        this.descriptionInputElement = this.element.querySelector('#description');
+        this.peopleElement = this.element.querySelector('#people');
         this.configure();
         this.attach();
     }
+    gatherUserInput() {
+        const enteredTittle = this.titleInputElement.value;
+        const enteredDescription = this.descriptionInputElement.value;
+        const enteredPeople = this.peopleElement.value;
+        if (enteredTittle.trim().length === 0
+            || enteredDescription.trim().length === 0
+            || enteredDescription.trim().length === 0) {
+            alert('invalid input ');
+            return;
+        }
+        else {
+            return [enteredTittle, enteredDescription, +enteredPeople];
+        }
+    }
+    clearInputs() {
+        this.titleInputElement.value = '';
+        this.descriptionInputElement.value = '';
+        this.peopleElement.value = '';
+    }
     submitHandler(event) {
         event.preventDefault();
-        console.log(this.titleInputElement.value);
-        // debugger
+        const userInput = this.gatherUserInput();
+        if (Array.isArray(userInput)) {
+            const [title, description, people] = userInput;
+            console.log(title, description, people);
+            this.clearInputs();
+        }
     }
     configure() {
         this.element.addEventListener('submit', this.submitHandler);
