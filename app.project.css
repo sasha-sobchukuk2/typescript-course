@@ -1,0 +1,16 @@
+label{
+    content: '';
+    display: flex;
+    line-height: 20px;
+}
+form{
+    background-color: grey;
+    border: red solid 1px;
+    width: 200px;
+    padding: 10px;
+}
+button{
+    padding: 5px;
+    border-radius: 6px;
+    background-color: lightcoral;
+}
