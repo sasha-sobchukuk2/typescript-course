@@ -5,6 +5,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var ProjectStatus;
+(function (ProjectStatus) {
+    ProjectStatus[ProjectStatus["Active"] = 0] = "Active";
+    ProjectStatus[ProjectStatus["finished"] = 1] = "finished";
+})(ProjectStatus || (ProjectStatus = {}));
+class Project {
+    constructor(id, title, description, people, status) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.people = people;
+        this.status = status;
+    }
+}
+class ProjectState {
+    constructor() {
+        this.listeners = [];
+        this.projects = [];
+    }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        else {
+            this.instance = new ProjectState();
+            return this.instance;
+        }
+    }
+    addProject(title, description, numOfPeople) {
+        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.Active);
+        this.projects.push(newProject);
+        for (const lisneterFn of this.listeners) {
+            lisneterFn(this.projects.slice());
+        }
+    }
+    addListener(listenerfn) {
+        this.listeners.push(listenerfn);
+    }
+}
 function autobind(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
     const adjDescriptor = {
@@ -16,6 +55,7 @@ function autobind(target, methodName, descriptor) {
     };
     return adjDescriptor;
 }
+const projectState = ProjectState.getInstance();
 function validatee(validatableInput) {
     let isValid = true;
     if (validatableInput.required) {
@@ -34,6 +74,46 @@ function validatee(validatableInput) {
         isValid = isValid && validatableInput.value < validatableInput.max;
     }
     return isValid;
+}
+class ProjectList {
+    constructor(type) {
+        this.type = type;
+        this.templateElement = document.getElementById('project-list');
+        this.hostElement = document.getElementById('app');
+        this.assignedProjects = [];
+        const importedNode = document.importNode(this.templateElement.content, true);
+        this.element = importedNode.firstElementChild;
+        this.element.id = `${this.type}-projects`;
+        projectState.addListener((projects) => {
+            const relevantProjects = projects.filter(prj => {
+                if (this.type === 'active') {
+                    return prj.status === ProjectStatus.Active;
+                }
+                return prj.status === ProjectStatus.finished;
+            });
+            this.assignedProjects = relevantProjects;
+            this.renderProjects();
+        });
+        this.atach();
+        this.renderContent();
+    }
+    renderProjects() {
+        const listEl = document.getElementById(`${this.type}-projects-list`);
+        listEl.innerHTML = '';
+        for (const prjItem of this.assignedProjects) {
+            const listItem = document.createElement('li');
+            listItem.textContent = prjItem.title;
+            listEl.appendChild(listItem);
+        }
+    }
+    renderContent() {
+        const listId = `${this.type}-projects-list`;
+        this.element.querySelector('ul').id = listId;
+        this.element.querySelector('h2').textContent = this.type.toUpperCase() + ' PROJECTS';
+    }
+    atach() {
+        this.hostElement.insertAdjacentElement('beforeend', this.element);
+    }
 }
 class AppProject {
     constructor() {
@@ -58,13 +138,13 @@ class AppProject {
         const descriptionValidatable = {
             value: enteredDescription,
             required: true,
-            minLength: 5
+            minLength: 0
         };
         const peopleValidatable = {
             value: +enteredPeople,
             required: true,
-            min: 2,
-            max: 5
+            min: 0,
+            max: 9999
         };
         if (
         // enteredTittle.trim().length === 0
@@ -81,9 +161,9 @@ class AppProject {
         }
     }
     clearInputs() {
-        this.titleInputElement.value = '';
-        this.descriptionInputElement.value = '';
-        this.peopleElement.value = '';
+        this.titleInputElement.value = '1';
+        this.descriptionInputElement.value = '2';
+        this.peopleElement.value = '3';
     }
     submitHandler(event) {
         event.preventDefault();
@@ -91,6 +171,7 @@ class AppProject {
         if (Array.isArray(userInput)) {
             const [title, description, people] = userInput;
             console.log(title, description, people);
+            projectState.addProject(title, description, people);
             this.clearInputs();
         }
     }
@@ -105,4 +186,6 @@ __decorate([
     autobind
 ], AppProject.prototype, "submitHandler", null);
 const prjInput = new AppProject();
+const activeProjectList = new ProjectList('active');
+const finishedProjectList = new ProjectList('finished');
 //# sourceMappingURL=app.project.js.map
