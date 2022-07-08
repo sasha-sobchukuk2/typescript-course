@@ -1,1 +1,0 @@
-{"version":3,"file":"app.project.js","sourceRoot":"","sources":["../../../src/project/app.project.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,YAAY,EAAC,MAAM,+BAA+B,CAAC;AAC3D,OAAO,EAAC,WAAW,EAAC,MAAM,8BAA8B,CAAC;AAGzD,MAAM,QAAQ,GAAG,IAAI,YAAY,EAAE,CAAA;AACnC,MAAM,iBAAiB,GAAG,IAAI,WAAW,CAAC,QAAQ,CAAC,CAAA;AACnD,MAAM,mBAAmB,GAAG,IAAI,WAAW,CAAC,UAAU,CAAC,CAAA"}
