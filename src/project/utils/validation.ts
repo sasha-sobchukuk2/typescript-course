@@ -1,4 +1,3 @@
-namespace App{
 
 
    export interface Validatable {
@@ -43,4 +42,3 @@ namespace App{
         }
         return isValid;
     }
-}

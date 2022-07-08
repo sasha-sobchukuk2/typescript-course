@@ -1,8 +1,9 @@
-namespace App{
+import {Project, ProjectStatus} from "../models/project.js";
 
-    type Listener<T> = (items: T[]) => void;
 
-    class State<T> {
+type Listener<T> = (items: T[]) => void;
+
+    export class State<T> {
         protected listeners: Listener<T>[] = [];
 
         addListener(listenerFn: Listener<T>) {
@@ -10,7 +11,7 @@ namespace App{
         }
     }
 
-   export class ProjectState extends State<Project> {
+    export class ProjectState extends State<Project> {
         private projects: Project[] = [];
         private static instance: ProjectState;
 
@@ -56,6 +57,6 @@ namespace App{
         }
 
     }
-   export const projectState = ProjectState.getInstance();
 
-}
+    export const projectState = ProjectState.getInstance();
+
