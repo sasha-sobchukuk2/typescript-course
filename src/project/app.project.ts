@@ -8,6 +8,8 @@ import {Product} from "./product.model";
 import _ from 'lodash'
 // @ts-ignore
 import {plainToClass} from "class-transformer";
+// @ts-ignore
+import {validate, ValidationError} from "class-validator";
 declare var GLOBAL:any
 
 const products = [
@@ -36,3 +38,16 @@ const loadedProducts =  plainToClass(Product,products)
 for(const prod of  loadedProducts){
     console.log(prod.getInform())
 }
+
+const newProd = new Product('',0)
+validate(newProd).then((errors:ValidationError)=>{
+    if(errors.length >0){
+        console.error('validation')
+    }else {
+        console.log(newProd.getInform())
+    }
+})
+
+
+
+

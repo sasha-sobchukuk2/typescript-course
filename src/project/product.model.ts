@@ -1,5 +1,13 @@
+// @ts-ignore
+import {IsNotEmpty, IsNotEmptyObject, IsNumber, IsPositive, IsString} from "class-validator";
+
 export class Product {
+
+    @IsNotEmpty()
     title:string
+
+    @IsNumber()
+    @IsPositive()
     price:number
 
     constructor(t:string,p:number) {
